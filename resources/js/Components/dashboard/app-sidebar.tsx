@@ -1,4 +1,4 @@
-import { Calendar, ChevronUp, Home, Inbox, LogOutIcon, Route, Search, Settings, User2 } from "lucide-react"
+import { BookHeart, Calendar, ChevronUp, Home, Inbox, LogOutIcon, Route, Search, Settings, User2 } from "lucide-react"
 
 import {
   Sidebar,
@@ -21,15 +21,15 @@ import Dropdown from "../Dropdown"
 const items = [
   {
       id: 1,
-      title: "Home",
+      title: "Dashboard",
       url: "/dashboard",
       icon: Home,
     },
   {
     id: 2,
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Rekomendasikan",
+    url: "/books",
+    icon: BookHeart,
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ export function AppSidebar() {
               <SidebarMenuButton>
                 <Link href="/" className="flex items-center space-x-2">
                   <img src="/img/jbp.png" alt="Jakarta Book Party" className="w-8 object-cover m-auto" />
-                  <span className="font-bold">Welcome to Book Party</span>
+                  <span className="font-bold text-green-900 dark:text-green-700 mt-1.5">Book Party</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -95,7 +95,9 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item, index) => (
                 <SidebarMenuItem key={index}>
-                  {pathName === item.url ? <SidebarMenuButton asChild isActive>
+                  {/* jika url == dengan url /url/.. */}
+                  {pathName.startsWith(item.url) ?
+                    <SidebarMenuButton asChild isActive>
                     <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>

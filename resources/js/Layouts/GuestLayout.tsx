@@ -9,7 +9,7 @@ export default function Guest({ children }: PropsWithChildren) {
             <div className="flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0">
                 <div>
                     <Link href="/">
-                        <ApplicationLogo className="h-20 w-20 fill-current text-zinc-500 dark:text-zinc-300" />
+                        <img src="/img/jbp.png" alt="Jakarta Book Party" className="w-20 object-cover m-auto" />
                     </Link>
                 </div>
 
