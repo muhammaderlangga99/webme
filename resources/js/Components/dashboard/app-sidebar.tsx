@@ -79,9 +79,8 @@ export function AppSidebar() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton>
-                <Link href="/" className="flex items-center space-x-2">
-                  <img src="/img/jbp.png" alt="Jakarta Book Party" className="w-8 object-cover m-auto" />
-                  <span className="font-bold text-green-900 dark:text-green-700 mt-1.5">Book Party</span>
+                <Link href="/" className="flex items-center space-x-2 w-full">
+                  <span className="font-bold text-zinc-900 dark:text-zinc-200 text-xl">me.</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

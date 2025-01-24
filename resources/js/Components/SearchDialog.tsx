@@ -47,7 +47,7 @@ export function SearchDialog({ className }: { className?: string }) {
                 aria-label="Search"
             >
                 <div className="placeholder">
-                    <p className="text-xs text-zinc-500 px-1">Cari buku & event...</p>
+                    <p className="text-xs text-zinc-500 px-1">search anyelse...</p>
                 </div>
                 
                 <p className="text-sm text-muted-foreground">
@@ -63,7 +63,7 @@ export function SearchDialog({ className }: { className?: string }) {
                 onClick={() => setOpen(true)}
                 aria-label="Search"
             >
-                <Search size={15} strokeWidth={2} className="dark:text-green-600" />
+                <Search size={15} strokeWidth={2} className="dark:text-white" />
             </button>
 
             <CommandDialog open={open} onOpenChange={setOpen} >
