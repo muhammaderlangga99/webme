@@ -3,17 +3,17 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Transition } from '@headlessui/react';
-import { useForm } from '@inertiajs/react';
-import { FormEventHandler, useRef } from 'react';
+import { useForm, usePage } from '@inertiajs/react';
+import { FormEventHandler, useEffect, useRef } from 'react';
 
 export default function UpdatePasswordForm({
     className = '',
 }: {
     className?: string;
-}) {
+    }) {
     const passwordInput = useRef<HTMLInputElement>(null);
     const currentPasswordInput = useRef<HTMLInputElement>(null);
-
+    const user = usePage().props.auth.user;
     const {
         data,
         setData,
@@ -28,13 +28,15 @@ export default function UpdatePasswordForm({
         password_confirmation: '',
     });
 
+
     const updatePassword: FormEventHandler = (e) => {
         e.preventDefault();
 
+        // If the user has a password, we need to include the current password
         put(route('password.update'), {
             preserveScroll: true,
             onSuccess: () => reset(),
-            onError: (errors) => {
+            onError: (errors) => { 
                 if (errors.password) {
                     reset('password', 'password_confirmation');
                     passwordInput.current?.focus();
@@ -52,7 +54,17 @@ export default function UpdatePasswordForm({
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
-                    Update Password
+                    {
+                        user.password ? (
+                            <>
+                                Update Password
+                            </>
+                        ) : (
+                            <span className='text-red-600'>
+                               ! Set Password
+                            </span>
+                        )
+                    }
                 </h2>
 
                 <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
@@ -63,27 +75,34 @@ export default function UpdatePasswordForm({
 
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel
-                        htmlFor="current_password"
-                        value="Current Password"
-                    />
+                    
+                    {
+                        user.password ? (
+                            <>
+                                <InputLabel htmlFor="current_password" value="Current Password" />
 
-                    <TextInput
-                        id="current_password"
-                        ref={currentPasswordInput}
-                        value={data.current_password}
-                        onChange={(e) =>
-                            setData('current_password', e.target.value)
-                        }
-                        type="password"
-                        className="mt-1 block w-full border-0 bg-muted"
-                        autoComplete="current-password"
-                    />
+                                <TextInput
+                                    id="current_password"
+                                    ref={currentPasswordInput}
+                                    value={data.current_password}
+                                    onChange={(e) => setData('current_password', e.target.value)}
+                                    type="password"
+                                    className="mt-1 block w-full border-0 bg-muted"
+                                    autoComplete="current-password"
+                                />
 
-                    <InputError
-                        message={errors.current_password}
-                        className="mt-2"
-                    />
+                                <InputError message={errors.current_password} className="mt-2" />
+                            </>
+                        ) : (
+                            <>
+                                
+                            </>
+                        )   
+    
+                            
+                    }
+
+                        
                 </div>
 
                 <div>

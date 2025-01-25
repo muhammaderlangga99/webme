@@ -9,7 +9,7 @@ export default function Guest({ children }: PropsWithChildren) {
             <div className="flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0">
                 <div>
                     <Link href="/">
-                        <h3 className='text-5xl font-extrabold'>_me.</h3>
+                        <h3 className='text-5xl font-extrabold'>me.</h3>
                     </Link>
                 </div>
 

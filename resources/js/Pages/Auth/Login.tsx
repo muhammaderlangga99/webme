@@ -101,7 +101,13 @@ export default function Login({
                         Log in
                     </PrimaryButton>
                 </div>
+
+                {/* login with google */}
+                
             </form>
+            <a href="auth/redirect" className="mt-4 block">
+                    <PrimaryButton className="w-full">Login with Google</PrimaryButton>
+                </a>
         </GuestLayout>
     );
 }

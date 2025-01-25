@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -32,4 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// oauth 2 with google
+Route::get('/auth/redirect', [SocialiteController::class, 'redirect']);
+Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
 require __DIR__ . '/auth.php';

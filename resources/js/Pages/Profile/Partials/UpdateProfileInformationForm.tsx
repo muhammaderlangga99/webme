@@ -21,6 +21,7 @@ export default function UpdateProfileInformation({
         useForm({
             name: user.name,
             email: user.email,
+            password: user.password
         });
 
     const submit: FormEventHandler = (e) => {
