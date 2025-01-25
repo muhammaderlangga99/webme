@@ -97,11 +97,11 @@ export function AppSidebar() {
                   {/* jika url == dengan url /url/.. */}
                   {pathName.startsWith(item.url) ?
                     <SidebarMenuButton asChild isActive>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
                     :
                     <SidebarMenuButton key={index} asChild>
                       <Link href={item.url}>
@@ -128,8 +128,10 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <User2 /> {user.name.length > 0 ? user.name.split(' ')[1] : user.name}
+                <SidebarMenuButton className="lowercase tracking-wider items-center flex">
+                  {
+                    user.avatar && <img src={user.avatar} alt={user.name} className='w-6 h-6 object-cover border rounded-lg' />
+                  } _{user.name.length > 0 ? user.name.split(' ')[1] : user.name}.
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>

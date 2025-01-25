@@ -21,14 +21,15 @@ class SocialiteController extends Controller
                 'email' => $user->email,
                 'google_token' => $user->token,
                 'google_refresh_token' => $user->refreshToken,
+                'avatar' => $user->avatar,
             ]);
 
             Auth::login($user);
-            return redirect('/dashboard');
+            return redirect('/');
         }
 
         Auth::login($registeredUser);
-        return redirect('/dashboard');
+        return redirect('/');
     }
 
 

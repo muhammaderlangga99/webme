@@ -4,7 +4,7 @@ export interface User {
     email: string;
     email_verified_at?: string;
     password?: string;
-    has_password: boolean;
+    avatar?: string;
 }
 
 export type PageProps<
