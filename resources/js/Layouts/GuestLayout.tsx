@@ -13,9 +13,10 @@ export default function Guest({ children }: PropsWithChildren) {
                     </Link>
                 </div>
 
-                <div className="mt-6 w-full overflow-hidden bg-zinc-50 dark:bg-zinc-900 px-6 py-4 border sm:max-w-md sm:rounded-lg">
+                <div className="mt-6 w-full overflow-hidden px-6 py-4 sm:max-w-md sm:rounded-lg">
                     {children}
                 </div>
+            
             </div>
         </ThemeProvider>
     );

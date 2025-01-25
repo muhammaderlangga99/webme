@@ -38,7 +38,17 @@ export default function Login({
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            <a href="auth/redirect" className="mb-4 flex items-center gap-2 justify-center border-2  py-1.5 rounded-lg tracking-wide">
+                    <img src="/img/Google.png" className='w-4 h-4' alt="" />
+                    Sign in / Sign up with Google
+            </a>
+            <hr />
+            <div className="mt-4 text-sm text-gray-600">
+                <p>
+                    Or sign in with your email and password.
+                </p>
+            </div>
+            <form onSubmit={submit} className='mt-4'>
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 
@@ -105,9 +115,6 @@ export default function Login({
                 {/* login with google */}
                 
             </form>
-            <a href="auth/redirect" className="mt-4 block">
-                    <PrimaryButton className="w-full">Login with Google</PrimaryButton>
-                </a>
         </GuestLayout>
     );
 }
