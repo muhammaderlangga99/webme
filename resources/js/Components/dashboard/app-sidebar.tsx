@@ -1,4 +1,4 @@
-import { BookHeart, Calendar, ChevronUp, Home, Inbox, LogOutIcon, Route, Search, Settings, User2 } from "lucide-react"
+import { ArrowLeft, ArrowUpLeftIcon, BookHeart, Calendar, ChevronUp, Dock, Home, Inbox, LogOutIcon, Proportions, Route, Search, Settings, User2 } from "lucide-react"
 
 import {
   Sidebar,
@@ -27,9 +27,9 @@ const items = [
     },
   {
     id: 2,
-    title: "Rekomendasikan",
-    url: "/books",
-    icon: BookHeart,
+    title: "New Template",
+    url: "/webs/create",
+    icon: Proportions,
   },
   {
     id: 3,
@@ -78,9 +78,12 @@ export function AppSidebar() {
         <SidebarContent>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>
-                <Link href="/" className="flex items-center space-x-2 w-full">
-                  <span className="font-bold text-zinc-900 dark:text-zinc-200 text-xl">me.</span>
+              <SidebarMenuButton asChild>
+                <Link href="/">
+                  <ArrowUpLeftIcon strokeWidth={3} />
+                  <span className="font-bold text-zinc-900 dark:text-zinc-200 text-xl">
+                    me.
+                  </span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

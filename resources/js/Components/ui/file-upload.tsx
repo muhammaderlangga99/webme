@@ -32,7 +32,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onChange, className }) => {
       {filePreview ? (
         <img src={filePreview} alt="preview" className="w-full h-full object-cover" />
       ) : (
-        <p className="text-center text-zinc-500">
+        <div className="text-center text-zinc-500">
           {isDragActive ? (
             <span>Drop the files here ...</span>
           ) : (
@@ -41,7 +41,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onChange, className }) => {
               <span className="text-xs">Only images are allowed</span>
             </>
           )}
-        </p>
+        </div>
       )}
     </div>
   );
