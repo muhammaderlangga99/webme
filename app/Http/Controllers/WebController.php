@@ -50,7 +50,8 @@ class WebController extends Controller
                 'price' => intval($request->price)
             ]);
 
-            return redirect()->route('webs.create')->with('success', 'Web created successfully.');
+            session()->flash('message', 'Template baru telah ditambahkan');
+            return redirect()->route('dashboard');
         }
     }
 

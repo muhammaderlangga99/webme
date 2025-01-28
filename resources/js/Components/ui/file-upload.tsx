@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { set } from 'react-hook-form';
 
 type FileUploadProps = {
   onChange: (file: File | null) => void;
@@ -11,9 +12,9 @@ const FileUpload: React.FC<FileUploadProps> = ({ onChange, className }) => {
 
   const onDrop = (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
-    if (file) {
-      onChange(file);
-      setFilePreview(URL.createObjectURL(file));
+    if (file) { // jika file ada
+      onChange(file); // jalankan fungsi onChange
+      setFilePreview(URL.createObjectURL(file)); // set file preview
     }
   };
 

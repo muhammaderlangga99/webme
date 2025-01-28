@@ -6,13 +6,13 @@ import { title } from 'process';
 import InputLabel from '@/Components/ui/InputLabel';
 import { Button } from '@/Components/ui/button';
 import FileUpload from '@/Components/ui/file-upload';
-import { Send } from 'lucide-react';
+import { Loader, Send } from 'lucide-react';
 import axios from 'axios';
 import { on } from 'events';
 
 export default function Create() {
 
-    const { data, setData, post } = useForm({
+    const { data, setData, post, reset, processing } = useForm({
         title: '',
         description: '',
         image: null,
@@ -28,15 +28,11 @@ export default function Create() {
         e.preventDefault();
 
         try {
-            post(route('webs.store'));
-
-            setData({
-                title: '',
-                description: '',
-                image: null,
-                url: '',
-                price: '',
-            })
+            post(route('webs.store', data), {
+                onFinish: () => {
+                    reset('title', 'description', 'image', 'url', 'price');
+                }
+            });
         } catch (error) {
             console.log(error);
         }
@@ -60,11 +56,18 @@ export default function Create() {
                             <InputLabel htmlFor="description" type="text" name='description' value={data.description} required onChange={handleChange}>Description</InputLabel>
                             <InputLabel htmlFor="url" type="text" name='url' required value={data.url} onChange={handleChange}>URL</InputLabel>
                             <InputLabel htmlFor="price" type="number" name='price' value={data.price} required onChange={handleChange}>Price</InputLabel>
-                            <Button type="submit" className="bg-black mt-2 shadow-xl font-semibold dark:bg-zinc-200 text-white dark:text-black rounded-lg max-w-24 py-1.5 shadow-zinc-200 dark:shadow-zinc-800 flex justify-center items-center gap-2">Upload <Send size="15" /></Button>
+                            <Button type="submit" disabled={processing} className="bg-black mt-2 shadow-xl font-semibold dark:bg-zinc-200 text-white dark:text-black rounded-lg max-w-24 py-1.5 shadow-zinc-200 dark:shadow-zinc-800 flex justify-center items-center gap-2">
+                                {
+                                    !processing ?
+                                        <>
+                                            <span>Submit</span> <Send size={16} /> 
+                                        </> :
+                                        <>
+                                            <span className='p-1'>Loading</span> <Loader size={16} className='animate-spin' /> 
+                                        </>
+                                }
+                            </Button>
                         </form>
-                        {/* <div className="relative flex flex-col w-full h-4/6 overflow-hidden mt-10">
-                            <FileUpload className="h-56 sm:h-full w-full" onChange={(file: any) => setData('Image', file)} />
-                        </div> */}
                     </div>
                 </div>
             </div>

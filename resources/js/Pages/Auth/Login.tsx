@@ -5,6 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { Loader } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 export default function Login({
@@ -108,7 +109,7 @@ export default function Login({
                     )}
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
+                        Log in {processing && (<Loader className="animate-spin" />)}
                     </PrimaryButton>
                 </div>
 

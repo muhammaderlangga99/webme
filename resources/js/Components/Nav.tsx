@@ -59,10 +59,10 @@ export default function Navigation({ auth }: { auth: { user: User } }) {
                     <ModeToggle />
                     {auth.user ? (
                         <li className=''>
-                            <Link href={route('dashboard')} className='text-sm bg-zinc-900 dark:bg-zinc-100 py-1.5 pl-4 pr-5 md:pl-3 md:pr-5 rounded-full text-white flex items-center justify-center gap-2 dark:text-black shadow-lg dark:shadow-zinc-600 font-bold lowercase tracking-wider'>
+                            <Link href={route('dashboard')} className='text-sm bg-zinc-300 dark:bg-zinc-800 pr-5 md:pr-5 rounded-full text-zinc-800 border border-zinc-400 dark:border-zinc-700 flex items-center justify-center gap-2 dark:text-white font-bold lowercase tracking-wider'>
                                 {/* avatar */}
                                 {
-                                    auth.user.avatar && <img src={auth.user.avatar} alt={auth.user.name} className='w-6 h-6 object-cover m-auto rounded-full' />
+                                    auth.user.avatar && <img src={auth.user.avatar} alt={auth.user.name} className='w-7 h-7 object-cover m-auto rounded-full' />
                                 }
                             _{auth.user.name.length  > 0 ? auth.user.name.split(' ')[1] : auth.user.name}. 
                             </Link>
