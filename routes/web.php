@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\WebController;
+use App\Models\Web;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -11,10 +13,8 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        // show data from webs table
+        'webs' => Web::all(),
     ]);
 });
 
@@ -27,13 +27,23 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(WebController::class)->group(function () {
-    // Route::get('/webs', [WebController::class, 'index'])->name('webs.index');
     Route::get('/webs/create', [WebController::class, 'create'])->name('webs.create');
     Route::post('/webs', [WebController::class, 'store'])->name('webs.store');
     Route::get('/webs/{web}/edit', [WebController::class, 'edit'])->name('webs.edit');
     Route::patch('/webs/{web}', [WebController::class, 'update'])->name('webs.update');
     Route::delete('/webs/{web}', [WebController::class, 'destroy'])->name('webs.destroy');
-});
+    Route::get('/webs/{web:slug}', [WebController::class, 'show'])->name('webs.detail');
+})->middleware('auth');
+
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::patch('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::get('/orders/{order:slug}', [OrderController::class, 'show'])->name('orders.detail');
+})->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

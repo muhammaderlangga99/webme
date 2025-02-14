@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpLeftIcon, BookHeart, Calendar, ChevronUp, Dock, Home, Inbox, LogOutIcon, Proportions, Route, Search, Settings, User2 } from "lucide-react"
+import { ArrowLeft, ArrowUpLeftIcon, BookHeart, Calendar, ChevronUp, Dock, Home, Inbox, LogOutIcon, Proportions, Route, Search, Settings, ShoppingBasket, ShoppingBasketIcon, User2 } from "lucide-react"
 
 import {
   Sidebar,
@@ -24,7 +24,7 @@ const items = [
       title: "Dashboard",
       url: "/dashboard",
       icon: Home,
-    },
+  },
   {
     id: 2,
     title: "New Template",
@@ -33,9 +33,9 @@ const items = [
   },
   {
     id: 3,
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "Tracking Order",
+    url: "/orders",
+    icon: ShoppingBasketIcon,
   },
   {
     id: 4,
@@ -113,13 +113,6 @@ export function AppSidebar() {
                       </Link>
                     </SidebarMenuButton>
                   }
-
-                  {/* <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton> */}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>

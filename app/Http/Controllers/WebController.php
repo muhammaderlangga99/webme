@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Web;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class WebController extends Controller
 {
@@ -41,10 +42,11 @@ class WebController extends Controller
 
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
-
+            $slug = Str::slug($request->title);
             Web::create([
                 'image' => $imageName,
                 'title' => $request->title,
+                'slug' => $slug,
                 'description' => $request->description,
                 'url' => $request->url,
                 'price' => intval($request->price)
@@ -60,7 +62,10 @@ class WebController extends Controller
      */
     public function show(Web $web)
     {
-        //
+        // dd($web);
+        return Inertia::render('Webs/Detail', [
+            'web' => $web
+        ]);
     }
 
     /**

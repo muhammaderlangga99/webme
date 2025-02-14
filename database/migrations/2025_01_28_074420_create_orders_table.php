@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('webs', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->text('description');
-            $table->string('image');
-            $table->string('url');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('webs_id')->constrained()->onDelete('cascade');
+            $table->string('domain_name');
+            $table->enum('status', ['pending', 'completed', 'cancelled']);
             $table->integer('price');
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('webs');
+        Schema::dropIfExists('orders');
     }
 };

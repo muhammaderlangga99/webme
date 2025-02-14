@@ -39,14 +39,19 @@ export default function Login({
                 </div>
             )}
 
-            <a href="auth/redirect" className="mb-4 flex items-center gap-2 justify-center border-2  py-1.5 rounded-lg tracking-wide">
-                    <img src="/img/Google.png" className='w-4 h-4' alt="" />
-                    Sign in / Sign up with Google
+            <a href="auth/redirect" className="mb-4 flex items-center gap-2 justify-center border-2  py-2 rounded-xl tracking-wide">
+                <img src="/img/Google.png" className='w-4 h-4' alt="" />
+                Sign in / Sign up with Google
             </a>
-            <hr />
+            <div className="flex items-center">
+                <div className="flex-grow border-t border-gray-600"></div>
+                <span className="mx-4 text-gray-600 text-xs font-semibold">OR</span>
+                <div className="flex-grow border-t border-gray-600"></div>
+            </div>
+
             <div className="mt-4 text-sm text-gray-600">
                 <p>
-                    Or sign in with your email and password.
+                    sign in with your email and password.
                 </p>
             </div>
             <form onSubmit={submit} className='mt-4'>
@@ -58,7 +63,7 @@ export default function Login({
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full bg-muted border-none"
+                        className="mt-1 block w-full bg-zinc-200/80 dark:bg-zinc-900/40 border-none"
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
@@ -75,7 +80,7 @@ export default function Login({
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full bg-muted border-none"
+                        className="mt-1 block w-full bg-zinc-200/80 dark:bg-zinc-900/40 border-none"
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
@@ -98,18 +103,18 @@ export default function Login({
                     </label>
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
+                <div className="mt-4 gap-y-2 flex flex-col-reverse">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="rounded-md text-sm text-indigo-500 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             Forgot your password?
                         </Link>
                     )}
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in {processing && (<Loader className="animate-spin" />)}
+                    <PrimaryButton className="w-full text-center bg-indigo-600 flex justify-center py-2.5 rounded-lg" disabled={processing}>
+                        Log in {processing && (<Loader size={18} className="ml-1 animate-spin" />)}
                     </PrimaryButton>
                 </div>
 

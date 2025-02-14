@@ -26,9 +26,9 @@ export default function MenuMobile({ Navigation }: { Navigation: any }) {
                 </DrawerHeader>
                 <DrawerDescription>
                     {Navigation.map((item: any, index:any) => (
-                        <div key={index} className="flex flex-col space-y-3 items-start">
+                        <p key={index} className="flex flex-col space-y-3 items-start">
                             <Link href={item.link} className={`hover:text-zinc-600 mb-3 px-3 ${item.link == pathName && 'text-zinc-950 dark:text-blue-500 dark:hover:text-zinc-900 font-extrabold hover:text-zinc-950'}`}>{item.name}</Link>
-                        </div>
+                        </p>
                     ))}
                 </DrawerDescription>
             </DrawerContent>

@@ -12,9 +12,15 @@ class Web extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'image',
         'url',
         'price',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
